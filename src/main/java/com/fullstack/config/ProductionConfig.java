@@ -12,7 +12,7 @@ import org.springframework.context.annotation.PropertySource;
  */
 @Configuration
 @Profile("prod")
-@PropertySource("file:///${user.home}/IdeaProjects16/dev/fullstackproject/application-prod.properties")
+@PropertySource("file:///${user.home}/IdeaProjects16/dev1/fullstackproject/application-prod.properties")
 public class ProductionConfig {
 
     @Bean
