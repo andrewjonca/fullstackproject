@@ -12,13 +12,13 @@ public class UserUtils {
         throw new AssertionError("Non instantiable");
     }
 
-    static public User createBasicUser() {
+    static public User createBasicUser(String username, String email) {
         User user = new User();
         user.setPassword("secret");
-        user.setUsername("basicUser");
+        user.setUsername(username);
         user.setFirstName("Bob");
         user.setLastName("Zadzior");
-        user.setEmail("bz@gmail.com");
+        user.setEmail(email);
         user.setDescription("Long description of the user");
         user.setPhoneNumber("5036907229");
         user.setProfileImageUrl("https://bla");
