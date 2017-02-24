@@ -25,8 +25,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //    @Autowired
 //    private UserSecurityService userSecurityService;
 //
-//    @Autowired
-//    private Environment env;
+    @Autowired
+    private Environment env;
 
     /** The encryption SALT. */
     private static final String SALT = "fdalkjalk;3jlwf00sfaof";
@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/about/**",
             "/contact/**",
             "/error/**/*",
-//            "/console/**",
+            "/console/**",
 //            ForgotMyPasswordController.FORGOT_PASSWORD_URL_MAPPING,
 //            ForgotMyPasswordController.CHANGE_PASSWORD_PATH,
 //            SignupController.SIGNUP_URL_MAPPING
@@ -55,11 +55,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-//        List<String> activeProfiles = Arrays.asList(env.getActiveProfiles());
-//        if (activeProfiles.contains("dev")) {
-//            http.csrf().disable();
-//            http.headers().frameOptions().disable();
-//        }
+        List<String> activeProfiles = Arrays.asList(env.getActiveProfiles());
+        if (activeProfiles.contains("dev")) {
+            http.csrf().disable();
+            http.headers().frameOptions().disable();
+        }
 
         http
                 .authorizeRequests()

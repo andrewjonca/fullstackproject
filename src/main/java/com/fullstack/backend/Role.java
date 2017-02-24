@@ -9,7 +9,6 @@ import java.util.Set;
  * Created by akjonca on 2/23/17.
  */
 
-
 @Entity
 public class Role implements Serializable {
 
