@@ -1,5 +1,7 @@
 package com.fullstack.backend;
 
+import com.fullstack.enums.RolesEnum;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -25,6 +27,11 @@ public class Role implements Serializable {
 
     public Role() {
 
+    }
+
+    public Role(RolesEnum rolesEnum) {
+        this.id = rolesEnum.getId();
+        this.name = rolesEnum.getRoleName();
     }
 
     public int getId() {

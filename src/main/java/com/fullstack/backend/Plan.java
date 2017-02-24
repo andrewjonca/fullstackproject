@@ -1,5 +1,6 @@
 package com.fullstack.backend;
 
+import com.fullstack.enums.PlansEnum;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.Entity;
@@ -20,6 +21,11 @@ public class Plan implements Serializable {
 
     public Plan() {
 
+    }
+
+    public Plan(PlansEnum plansEnum) {
+        this.id = plansEnum.getId();
+        this.name = plansEnum.getPlanName();
     }
 
     public int getId() {
