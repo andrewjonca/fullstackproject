@@ -1,14 +1,14 @@
 package com.fullstack.utils;
 
-import com.fullstack.backend.User;
+import com.fullstack.backend.persistence.domain.User;
 
 /**
  * Created by akjonca on 2/23/17.
  */
 
-public class UsersUtils {
+public class UserUtils {
 
-    private UsersUtils() {
+    private UserUtils() {
         throw new AssertionError("Non instantiable");
     }
 

@@ -1,5 +1,7 @@
 package com.fullstack.config;
 
+
+import com.fullstack.backend.service.UserSecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,9 +24,9 @@ import java.util.List;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
-//    @Autowired
-//    private UserSecurityService userSecurityService;
-//
+    @Autowired
+    private UserSecurityService userSecurityService;
+
     @Autowired
     private Environment env;
 
@@ -75,10 +77,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
-                .inMemoryAuthentication()
-                .withUser("user").password("password")
-                .roles("USER");
-//                .userDetailsService(userSecurityService)
+                .userDetailsService(userSecurityService);
 //                .passwordEncoder(passwordEncoder());
     }
 }

@@ -1,4 +1,4 @@
-package com.fullstack.backend;
+package com.fullstack.backend.persistence.domain;
 
 import com.fullstack.enums.RolesEnum;
 
@@ -21,7 +21,7 @@ public class Role implements Serializable {
 
     private String name;
 
-    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<UserRole> userRoles = new HashSet<>();
 
 
