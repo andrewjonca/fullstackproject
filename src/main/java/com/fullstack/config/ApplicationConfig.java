@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableJpaRepositories(basePackages = "com.fullstack.backend.persistence.repositories")
-@EntityScan(basePackages = "com.fullstack.backend.persistence.domain")
+@EntityScan(basePackages = "com.fullstack.backend.persistence.domain.backend")
 @PropertySource("file:///${user.home}/IdeaProjects16/dev1/fullstackproject/application-common.properties")
 @EnableTransactionManagement
 public class ApplicationConfig {

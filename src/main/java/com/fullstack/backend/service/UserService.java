@@ -1,8 +1,9 @@
 package com.fullstack.backend.service;
 
-import com.fullstack.backend.persistence.domain.Plan;
-import com.fullstack.backend.persistence.domain.User;
-import com.fullstack.backend.persistence.domain.UserRole;
+import com.fullstack.backend.persistence.domain.backend.Plan;
+import com.fullstack.backend.persistence.domain.backend.User;
+import com.fullstack.backend.persistence.domain.backend.UserRole;
+import com.fullstack.backend.persistence.domain.backend.Authority;
 import com.fullstack.backend.persistence.repositories.PlanRepository;
 import com.fullstack.backend.persistence.repositories.RoleRepository;
 import com.fullstack.backend.persistence.repositories.UserRepository;

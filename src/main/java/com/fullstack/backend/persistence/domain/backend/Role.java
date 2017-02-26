@@ -1,4 +1,4 @@
-package com.fullstack.backend.persistence.domain;
+package com.fullstack.backend.persistence.domain.backend;
 
 import com.fullstack.enums.RolesEnum;
 

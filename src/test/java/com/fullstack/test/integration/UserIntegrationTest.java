@@ -1,9 +1,6 @@
 package com.fullstack.test.integration;
 
-import com.fullstack.backend.persistence.domain.Plan;
-import com.fullstack.backend.persistence.domain.Role;
-import com.fullstack.backend.persistence.domain.User;
-import com.fullstack.backend.persistence.domain.UserRole;
+import com.fullstack.backend.persistence.domain.backend.*;
 import com.fullstack.backend.persistence.repositories.PlanRepository;
 import com.fullstack.backend.persistence.repositories.RoleRepository;
 import com.fullstack.backend.persistence.repositories.UserRepository;
@@ -29,19 +26,7 @@ import java.util.Set;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class RepositoryIntegrationTest {
-
-    @Autowired
-    private PlanRepository planRepository;
-
-    @Autowired
-    private RoleRepository roleRepository;
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @Rule
-    public TestName testName = new TestName();
+public class UserIntegrationTest extends AbstractIntegrationTest {
 
     @Before
     public void init() {
@@ -91,44 +76,6 @@ public class RepositoryIntegrationTest {
         User basicUser = createUser();
         userRepository.delete(basicUser.getId());
         Assert.assertNull(userRepository.findOne(basicUser.getId()));
-    }
-
-
-    //---------------->
-
-    private Plan createPlan(PlansEnum planEnum) {
-        return new Plan(planEnum);
-    }
-
-    private Role createRole(RolesEnum rolesEnum) {
-        return new Role(rolesEnum);
-    }
-
-    private User createUser() {
-
-        String username = testName.getMethodName();
-        String email = testName.getMethodName() + "@gmail.com";
-
-        Plan basicPlan = createPlan(PlansEnum.BASIC);
-        planRepository.save(basicPlan);
-
-         User basicUser = UserUtils.createBasicUser(username, email);
-        basicUser.setPlan(basicPlan);
-
-        Role basicRole = createRole(RolesEnum.BASIC);
-        Set<UserRole> userRoles = new HashSet<>();
-        UserRole userRole = new UserRole(basicUser, basicRole);
-        userRoles.add(userRole);
-
-        basicUser.getUserRoles().addAll(userRoles);
-
-        for (UserRole ur : userRoles) {
-            roleRepository.save(ur.getRole());
-        }
-
-        basicUser = userRepository.save(basicUser);
-
-        return basicUser;
     }
 
 }

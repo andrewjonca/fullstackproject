@@ -1,8 +1,8 @@
 package com.fullstack;
 
-import com.fullstack.backend.persistence.domain.Role;
-import com.fullstack.backend.persistence.domain.User;
-import com.fullstack.backend.persistence.domain.UserRole;
+import com.fullstack.backend.persistence.domain.backend.Role;
+import com.fullstack.backend.persistence.domain.backend.User;
+import com.fullstack.backend.persistence.domain.backend.UserRole;
 import com.fullstack.backend.service.UserService;
 import com.fullstack.enums.PlansEnum;
 import com.fullstack.enums.RolesEnum;

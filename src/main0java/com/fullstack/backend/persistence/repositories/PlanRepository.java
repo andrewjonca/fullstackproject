@@ -1,6 +1,5 @@
 package com.fullstack.backend.persistence.repositories;
 
-import com.fullstack.backend.persistence.domain.Plan;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

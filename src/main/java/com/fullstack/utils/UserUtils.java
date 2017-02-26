@@ -1,6 +1,6 @@
 package com.fullstack.utils;
 
-import com.fullstack.backend.persistence.domain.User;
+import com.fullstack.backend.persistence.domain.backend.User;
 
 /**
  * Created by akjonca on 2/23/17.

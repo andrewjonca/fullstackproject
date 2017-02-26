@@ -1,6 +1,6 @@
 package com.fullstack.backend.service;
 
-import com.fullstack.backend.persistence.domain.User;
+import com.fullstack.backend.persistence.domain.backend.User;
 import com.fullstack.backend.persistence.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
