@@ -19,6 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 /**
  * Created by akjonca on 2/23/17.
@@ -26,7 +27,7 @@ import java.util.Set;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UserIntegrationTest extends AbstractIntegrationTest {
+public class UserRepositoryIntegrationTest extends AbstractIntegrationTest {
 
     @Before
     public void init() {
@@ -76,6 +77,31 @@ public class UserIntegrationTest extends AbstractIntegrationTest {
         User basicUser = createUser();
         userRepository.delete(basicUser.getId());
         Assert.assertNull(userRepository.findOne(basicUser.getId()));
+    }
+
+    @Test
+    public void testGetUserByEmail() throws Exception {
+
+        User user = createUser();
+        User newlyFoundUser = userRepository.findByEmail(user.getEmail());
+        Assert.assertNotNull(newlyFoundUser);
+        Assert.assertNotNull(newlyFoundUser.getId());
+        Assert.assertEquals(user.getId(), newlyFoundUser.getId());
+    }
+
+    @Test
+    public void testUpdateUserPassword() throws Exception {
+
+        User user = createUser();
+        Assert.assertNotNull(user);
+        Assert.assertNotNull(user.getId());
+
+        String newPassword = UUID.randomUUID().toString();
+
+        userRepository.updateUserPassword(user.getId(), newPassword);
+
+        user = userRepository.findOne(user.getId());
+        Assert.assertEquals(newPassword, user.getPassword());
     }
 
 }

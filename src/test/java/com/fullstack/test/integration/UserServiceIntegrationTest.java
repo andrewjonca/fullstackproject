@@ -14,36 +14,46 @@ import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 /**
  * Created by akjonca on 2/23/17.
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UserServiceIntegrationTest {
+public class UserServiceIntegrationTest extends AbstractServiceIntegrationTest {
 
     @Autowired
-    private UserService userService;
-
-    @Rule
-    public TestName testName = new TestName();
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Test
     public void testCreateNewUser() throws Exception {
-        Set<UserRole> userRoles = new HashSet<>();
-        String username = testName.getMethodName();
-        String email = testName.getMethodName() + "@gmail.com";
-        User basicUser = UserUtils.createBasicUser(username, email);
-        userRoles.add(new UserRole(basicUser, new Role(RolesEnum.BASIC)));
-
-        User user = userService.createUser(basicUser, PlansEnum.BASIC, userRoles);
+        User user = createUser();
         Assert.assertNotNull(user);
         Assert.assertNotNull(user.getId());
 
+    }
+
+    @Test
+    public void testServiceUpdateUserPassword() throws Exception {
+        User user = createUser();
+        Assert.assertNotNull(user);
+        Assert.assertNotNull(user.getId());
+
+        String newPassword = UUID.randomUUID().toString();
+
+        userService.updateUserPassword(user.getId(), newPassword);
+
+        user = userService.findUserByUsername(user.getUsername());
+
+        Assert.assertNotNull(user);
+        Assert.assertNotNull(user.getId());
+        Assert.assertTrue(passwordEncoder.matches(newPassword, user.getPassword()));
     }
 
 }

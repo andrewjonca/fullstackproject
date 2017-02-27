@@ -8,6 +8,8 @@ import com.fullstack.backend.persistence.repositories.PlanRepository;
 import com.fullstack.backend.persistence.repositories.RoleRepository;
 import com.fullstack.backend.persistence.repositories.UserRepository;
 import com.fullstack.enums.PlansEnum;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,8 @@ import java.util.Set;
 @Service
 @Transactional(readOnly = true)
 public class UserService {
+    /** The application logger */
+    private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
     private RoleRepository roleRepository;
@@ -53,5 +57,16 @@ public class UserService {
         user = userRepository.save(user);
 
         return user;
+    }
+
+    public User findUserByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    @Transactional
+    public void updateUserPassword(long userId, String password) {
+        password = passwordEncoder.encode(password);
+        userRepository.updateUserPassword(userId, password);
+        LOG.debug("Passowrd updated succesfully for user id {}", userId);
     }
 }
