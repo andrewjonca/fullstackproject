@@ -32,7 +32,7 @@ public class FullstackApplication implements CommandLineRunner {
 	@Value("${webmaster.password}")
 	private String webmasterPassword;
 
-	@Value("${webmaster.email")
+	@Value("${webmaster.email}")
 	private String webmasterEmail;
 
 
@@ -51,6 +51,6 @@ public class FullstackApplication implements CommandLineRunner {
 		userRoles.add(new UserRole(user, new Role(RolesEnum.ADMIN)));
 		LOG.debug("Creating user with username {}", user.getUsername());
 		userService.createUser(user, PlansEnum.PRO, userRoles);
-		LOG.info("User {} created", user.getUsername());
+		LOG.info("User {} created with email {}", user.getUsername(), user.getEmail());
 	}
 }
